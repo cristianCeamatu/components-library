@@ -8,7 +8,7 @@ interface IStyles {
   variant?: 'outlined' | 'contained'
   size?: 'largeInline' | 'normal' | 'large' | 'small'
   color?: keyof Palette
-  invertOnHover?: true
+  invertOnHover?: boolean
   disabled?: boolean
 }
 
@@ -17,14 +17,21 @@ interface IProps extends IStyles {
   onClick?: (e: React.MouseEvent<HTMLButtonElement>) => void
 }
 
-const Button = ({
+export const Button = ({
   label = 'Apply',
   type = 'button',
   variant = 'contained',
   size = 'normal',
   color = 'primary',
+  /** Inverts background color with font color on hover */
   invertOnHover,
+  /**
+   * Disables onClick
+   *
+   * @default false
+   **/
   disabled = false,
+  /** Callback to handle the click event  */
   onClick = () => {},
   ...props
 }: IProps) => {
@@ -44,16 +51,17 @@ const Button = ({
   )
 }
 
-export default Button
-
 const StyledButton = styled.button<IStyles>`
   padding: 0.5rem 1rem;
-  color: ${({ theme }) => theme.colors.white};
+  color: ${({ theme }) => theme.palette.white};
   background: ${({ theme, color }) =>
-    color ? theme.colors[color] : theme.colors.primary};
+    color ? theme.palette[color] : theme.palette.primary};
+  border: none;
   border-radius: ${({ theme }) => theme.misc.borderRadius};
   font-size: ${({ theme }) => theme.typography.h3};
-  box-shadow: ${({ theme }) => theme.shadows.normal};
+  text-transform: uppercase;
+  cursor: pointer;
+  box-shadow: ${({ theme }) => theme.misc.shadows.normal};
 
   ${({ size, theme }) =>
     size === 'large' &&
@@ -80,81 +88,34 @@ const StyledButton = styled.button<IStyles>`
     css`
       font-weight: 700;
       background: transparent;
-      color: ${color ? theme.colors[color].normal : theme.colors.main.normal};
-      border: 1px solid
-        ${color ? theme.colors[color].normal : theme.colors.main.normal};
+      color: ${color ? theme.palette[color] : theme.palette.primary};
+      outline: 2px solid ${color ? theme.palette[color] : theme.palette.primary};
     `};
 
   &:hover {
     ${({ invertOnHover, color, theme, variant }) =>
       invertOnHover &&
       css`
+        font-weight: 700;
         background: transparent;
-        color: ${color ? theme.colors[color].normal : theme.colors.main.normal};
-        border: 1px solid
-          ${color ? theme.colors[color].normal : theme.colors.main.normal};
+        color: ${color ? theme.palette[color] : theme.palette.primary};
+        border: 2px solid
+          ${color ? theme.palette[color] : theme.palette.primary};
 
         ${variant === 'outlined' &&
         css`
-          color: ${theme.colors.white};
-          background: ${color
-            ? theme.colors[color].normal
-            : theme.colors.main.normal};
+          color: ${theme.palette.white};
+          background: ${color ? theme.palette[color] : theme.palette.primary};
         `};
       `}
   }
 
-  ${({ disabled }) =>
+  ${({ disabled, theme }) =>
     disabled &&
     css`
       pointer-events: none;
       opacity: 0.7;
+      box-shadow: ${theme.misc.shadows.danger};
+      outline: 1px solid ${theme.palette.danger}88;
     `};
 `
-
-// export interface Props {
-//   /** Button content  */
-//   children: React.ReactNode
-//   /** Callback to handle the click event  */
-//   onClick?: () => void
-//   /**
-//    * Disables onClick
-//    *
-//    * @default false
-//    **/
-//   disabled?: boolean
-// }
-
-// const noop = () => {}
-
-// const RootStyledButton = styled.button`
-//   padding: 0px 20px;
-//   height: 49px;
-//   border-radius: 2px;
-//   border: 2px solid #3d5567;
-//   display: inline-flex;
-//   background-color: ${(props) => (props.disabled ? 'red' : 'blue')};
-// `
-
-// const ButtonSpan = styled.span`
-//   margin: auto;
-//   font-size: 16px;
-//   font-weight: bold;
-//   text-align: center;
-//   color: #fff;
-//   text-transform: uppercase;
-// `
-
-// /*
-//  * If you opt to do export default, you'll still need to have this
-//  * export for the TsDocGen work properly (I struggled to find this out)
-//  */
-// export const Button = (props: Props) => {
-//   const { children, onClick, disabled = false } = props
-
-//   return (
-//     <RootStyledButton disabled={disabled} onClick={!disabled ? onClick : noop}>
-//       <ButtonSpan>{children}</ButtonSpan>
-//     </RootStyledButton>
-//   )
-// }

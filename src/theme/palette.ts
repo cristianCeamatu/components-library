@@ -19,12 +19,12 @@ const createPalette = (palette: PaletteInput): Palette => {
     white = '#fff',
     grey = '#f7f9fa',
     black = '#222',
-    primary = '#6d30e7',
-    secondary = '#dfdded',
-    danger = '#fa1d42',
+    primary = '#2d9cdb',
+    secondary = '#5e72e4',
+    danger = '#eb5757',
     success = '#27ae60',
-    info = '#007BC0',
-    warning = '#FBC02D',
+    info = '#6bb2da',
+    warning = '#fcb400',
   } = palette
 
   return {
