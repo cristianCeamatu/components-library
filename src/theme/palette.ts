@@ -4,6 +4,10 @@ export interface Palette {
   black: string
   primary: string
   secondary: string
+  danger: string
+  success: string
+  info: string
+  warning: string
 }
 
 export type PaletteInput = {
@@ -17,6 +21,10 @@ const createPalette = (palette: PaletteInput): Palette => {
     black = '#222',
     primary = '#6d30e7',
     secondary = '#dfdded',
+    danger = '#fa1d42',
+    success = '#27ae60',
+    info = '#007BC0',
+    warning = '#FBC02D',
   } = palette
 
   return {
@@ -25,6 +33,10 @@ const createPalette = (palette: PaletteInput): Palette => {
     black,
     primary,
     secondary,
+    danger,
+    success,
+    info,
+    warning,
   }
 }
 
