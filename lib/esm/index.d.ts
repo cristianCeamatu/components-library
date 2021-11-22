@@ -4,3 +4,4 @@ declare const SayHello: ({ name }: {
 }) => JSX.Element;
 export default SayHello;
 export * from './Components/Button/Button';
+export * from './stories';

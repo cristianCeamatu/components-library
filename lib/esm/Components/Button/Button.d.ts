@@ -3,7 +3,7 @@ export interface Props {
     /** Button content  */
     children: React.ReactNode;
     /** Callback to handle the click event  */
-    onClick: () => void;
+    onClick?: () => void;
     /**
      * Disables onClick
      *
