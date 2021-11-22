@@ -1,14 +1,15 @@
 import * as React from 'react';
-export interface Props {
-    /** Button content  */
-    children: React.ReactNode;
-    /** Callback to handle the click event  */
-    onClick?: () => void;
-    /**
-     * Disables onClick
-     *
-     * @default false
-     **/
+import { Palette } from '../../theme/palette';
+export interface IStyles {
+    type?: 'button' | 'submit';
+    variant?: 'outlined' | 'contained';
+    size?: 'largeInline' | 'normal' | 'large' | 'small';
+    color?: keyof Palette;
+    invertOnHover?: boolean;
     disabled?: boolean;
 }
-export declare const Button: (props: Props) => JSX.Element;
+export interface IProps extends IStyles {
+    label: string;
+    onClick?: (e: React.MouseEvent<HTMLButtonElement>) => void;
+}
+export declare const Button: ({ label, type, variant, size, color, invertOnHover, disabled, onClick, ...props }: IProps) => JSX.Element;

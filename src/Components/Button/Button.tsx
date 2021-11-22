@@ -3,7 +3,7 @@ import * as React from 'react'
 import styled, { css } from 'styled-components'
 import { Palette } from '../../theme/palette'
 
-interface IStyles {
+export interface IStyles {
   type?: 'button' | 'submit'
   variant?: 'outlined' | 'contained'
   size?: 'largeInline' | 'normal' | 'large' | 'small'
@@ -12,7 +12,7 @@ interface IStyles {
   disabled?: boolean
 }
 
-interface IProps extends IStyles {
+export interface IProps extends IStyles {
   label: string
   onClick?: (e: React.MouseEvent<HTMLButtonElement>) => void
 }

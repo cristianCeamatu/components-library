@@ -3,7 +3,7 @@ import createTypography, { Typography, TypographyInput } from './typography'
 import spacing, { Spacing } from './spacing'
 import misc, { Misc } from './misc'
 
-export interface ITheme {
+export interface Theme {
   palette: Palette
   typography: Typography
   spacing: Spacing
@@ -15,7 +15,7 @@ export interface ThemeInput {
   typography?: TypographyInput
 }
 
-const createTheme = (options: ThemeInput): ITheme => {
+const createTheme = (options: ThemeInput): Theme => {
   const { palette: paletteInput = {}, typography: typographyInput = {} } =
     options || {}
 
@@ -29,7 +29,5 @@ const createTheme = (options: ThemeInput): ITheme => {
     misc, // misc props like borderRadius
   }
 }
-
-const Theme
 
 export default createTheme
