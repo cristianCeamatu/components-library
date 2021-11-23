@@ -11,6 +11,8 @@ export interface Typography {
   fontWeightNormal: number
   fontWeightLight: number
   fontWeightBold: number
+  fontWeightBolder: number
+  fontWeightSemiBold: number
 }
 
 export type TypographyInput = {
@@ -33,7 +35,9 @@ const createTypography = (typography: TypographyInput): Typography => {
     /* weights */
     fontWeightNormal = 400,
     fontWeightLight = 300,
+    fontWeightSemiBold = 500,
     fontWeightBold = 700,
+    fontWeightBolder = 900,
   } = typography
 
   const coef = fontSize / 14
@@ -41,17 +45,19 @@ const createTypography = (typography: TypographyInput): Typography => {
 
   return {
     fontFamily,
-    h1: pxToRem(96),
-    h2: pxToRem(60),
-    h3: pxToRem(48),
-    h4: pxToRem(34),
-    h5: pxToRem(24),
-    h6: pxToRem(20),
+    h1: pxToRem(24),
+    h2: pxToRem(20),
+    h3: pxToRem(18),
+    h4: pxToRem(17),
+    h5: pxToRem(16),
+    h6: pxToRem(14),
     button: pxToRem(14),
     small: pxToRem(12),
     fontWeightNormal,
     fontWeightLight,
     fontWeightBold,
+    fontWeightSemiBold,
+    fontWeightBolder,
   }
 }
 

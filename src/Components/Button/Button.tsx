@@ -99,9 +99,8 @@ const StyledButton = styled.button<IStyles>`
         font-weight: 700;
         background: transparent;
         color: ${color ? theme.palette[color] : theme.palette.primary};
-        border: 2px solid
+        outline: 2px solid
           ${color ? theme.palette[color] : theme.palette.primary};
-
         ${variant === 'outlined' &&
         css`
           color: ${theme.palette.white};
